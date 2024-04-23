@@ -29,5 +29,6 @@ public class ChangeCam : MonoBehaviour
     private void Start()
     {
         _collider = GetComponent<BoxCollider2D>();
+        NewCamera.gameObject.SetActive(false);
     }
 }
