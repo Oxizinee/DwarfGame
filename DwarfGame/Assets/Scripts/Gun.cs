@@ -7,6 +7,7 @@ public class Gun : MonoBehaviour
 {
     // Start is called before the first frame update
     public float RotationSpeed = 180;
+    public float RecoilStrength = 10;
     public Transform BulletSpawn;
     public GameObject BulletPrefab;
     private Vector2 _rotationInput;
@@ -16,7 +17,8 @@ public class Gun : MonoBehaviour
     }
     private void OnShoot()
     {
-        Instantiate(BulletPrefab, BulletSpawn.transform.position, BulletSpawn.transform.rotation);
+        GameObject bullet = Instantiate(BulletPrefab, BulletSpawn.transform.position, BulletSpawn.transform.rotation);
+        GetComponentInParent<Rigidbody2D>().AddForce((transform.right * -1)* RecoilStrength, ForceMode2D.Impulse);
     }
     void Start()
     {
@@ -29,9 +31,9 @@ public class Gun : MonoBehaviour
         if (_rotationInput != Vector2.zero)
         {
             Quaternion targetRot = Quaternion.LookRotation(transform.forward, _rotationInput);
-            Quaternion rotation = Quaternion.RotateTowards(transform.rotation, targetRot, RotationSpeed * Time.deltaTime);
+            Quaternion rotation = Quaternion.RotateTowards(transform.localRotation, targetRot, RotationSpeed * Time.deltaTime);
 
-            transform.rotation = rotation;
+            transform.localRotation = rotation;
         }
     }
 }
