@@ -6,8 +6,11 @@ using UnityEngine.InputSystem;
 public class Gun : MonoBehaviour
 {
     // Start is called before the first frame update
+    public GameObject Player;
+
     public float RotationSpeed = 180;
-    public float RecoilStrength = 10;
+    public float RecoilStrengthVertical = 10;
+    public float RecoilStrengthHorizontal = 10;
     public Transform BulletSpawn;
     public GameObject BulletPrefab;
     private Vector2 _rotationInput;
@@ -18,7 +21,9 @@ public class Gun : MonoBehaviour
     private void OnShoot()
     {
         GameObject bullet = Instantiate(BulletPrefab, BulletSpawn.transform.position, BulletSpawn.transform.rotation);
-        GetComponentInParent<Rigidbody2D>().AddForce((transform.right * -1)* RecoilStrength, ForceMode2D.Impulse);
+
+        Vector3 shootDir =  -transform.right;
+        Player.GetComponent<Rigidbody2D>().AddForce(new Vector2(shootDir.x * RecoilStrengthHorizontal, shootDir.y * RecoilStrengthVertical), ForceMode2D.Impulse);
     }
     void Start()
     {

@@ -35,17 +35,6 @@
             ],
             "bindings": [
                 {
-                    "name": "",
-                    "id": "d5ebe41a-14c0-4fae-a321-a39bb4cedc6f",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
                     "name": "1D Axis",
                     "id": "b73046a6-92a6-4f51-b046-6102d6c4547a",
                     "path": "1DAxis",
@@ -79,9 +68,42 @@
                     "isPartOfComposite": true
                 },
                 {
+                    "name": "1D Axis",
+                    "id": "b379577c-b976-4f06-b9d6-7846cb8a7193",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "fc63f55c-50dd-426a-98d1-04b7f451e1b0",
+                    "path": "<XInputController>/leftStick/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "5ccc0b00-ea02-4aa5-acf4-20dc2e329489",
+                    "path": "<XInputController>/leftStick/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
                     "name": "",
                     "id": "71884a46-54c7-4e80-bdd6-3e44d5a0a82f",
-                    "path": "",
+                    "path": "<XInputController>/rightStick",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -148,6 +170,17 @@
                     "name": "",
                     "id": "16d9f5e3-505f-46a5-881d-9c5f1a52d0cd",
                     "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1f9232c2-024b-4525-adb5-e7b65aedbab8",
+                    "path": "<XInputController>/rightTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
