@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 103891435}
   - component: {fileID: 103891434}
   - component: {fileID: 103891433}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Square (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -322,7 +322,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0.09
+  m_LinearDrag: 0.1
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
@@ -418,7 +418,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MovementSpeed: 10
   MaxSpeed: 7
-  _isGrounded: 0
+  FloorLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!114 &143410857
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -532,7 +534,7 @@ GameObject:
   - component: {fileID: 490925593}
   - component: {fileID: 490925592}
   - component: {fileID: 490925591}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Square (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -877,7 +879,7 @@ GameObject:
   - component: {fileID: 842917238}
   - component: {fileID: 842917237}
   - component: {fileID: 842917236}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Square (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1105,9 +1107,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 143410851}
-  shootDir: {x: 0, y: 0, z: 0}
-  RotationSpeed: 180
-  RecoilStrength: 10
+  RotationSpeed: 240
+  RecoilStrengthVertical: 20
+  RecoilStrengthHorizontal: 8
   BulletSpawn: {fileID: 1011651749}
   BulletPrefab: {fileID: 3657055641235910935, guid: 1a38b17db39c0724cb3a6322f5186f0b, type: 3}
 --- !u!1 &1631775132
@@ -1121,7 +1123,7 @@ GameObject:
   - component: {fileID: 1631775134}
   - component: {fileID: 1631775133}
   - component: {fileID: 1631775135}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
