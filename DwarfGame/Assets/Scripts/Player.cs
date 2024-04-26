@@ -10,6 +10,9 @@ public class Player : MonoBehaviour
     public float MovementSpeed = 5;
     public float MaxSpeed;
     public LayerMask FloorLayer;
+    public float Drag = 6;
+    public float AirDrag = 6;
+
 
     private float _inputValue, _shootingValue;
     private Rigidbody2D _rb;
@@ -52,11 +55,27 @@ public class Player : MonoBehaviour
         {
             _rb.velocity.Normalize();
         }
+
+        if (isGrounded())
+        {
+            if (_inputValue != 0)
+            {
+                _rb.drag = 0;
+            }
+            else
+            {
+                _rb.drag = Drag;
+            }
+        }
+        else 
+        {
+            _rb.drag = AirDrag;
+        }
     }
 
     private bool isGrounded()
     {
-        if (Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - (transform.localScale.y / 2)), -Vector2.up, 2f, FloorLayer))
+        if (Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - (transform.localScale.y / 2)), -Vector2.up, 1f, FloorLayer))
         {
             return true;
         }
