@@ -1,8 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -12,9 +15,13 @@ public class Player : MonoBehaviour
     public LayerMask FloorLayer;
     public float Drag = 6;
     public float AirDrag = 6;
+    public int Ammo = 10;
+    public float AmmoReload = 4;
+    public GameObject AmmoUI;
+    public bool IsShootingOne = true;
 
-
-    private float _inputValue, _shootingValue;
+    private Text AmmoText;
+    private float _inputValue, _shootingValue, _ammoTimer;
     private Rigidbody2D _rb;
     private void OnMove(InputValue value)
     {
@@ -24,14 +31,22 @@ public class Player : MonoBehaviour
     {
         _shootingValue = value.Get<float>();
     }
+
+    private void OnChangeShooting()
+    {
+        IsShootingOne = !IsShootingOne;
+    }
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+        AmmoText = AmmoUI.GetComponent<Text>();
     }
 
     // Update is called once per frame
     private void Update()
     {
+        AmmoText.text = Ammo.ToString();
+
         if (!isGrounded())
         {
             _rb.gravityScale = 2;
@@ -40,7 +55,24 @@ public class Player : MonoBehaviour
         {
             _rb.gravityScale = 1;
         }
+
+      //  Reload();
     }
+
+    private void Reload()
+    {
+        if (Ammo == 0)
+        {
+            _ammoTimer += Time.deltaTime;
+            if (_ammoTimer >= AmmoReload)
+            {
+                Ammo = 10;
+                _ammoTimer = 0;
+                return;
+            }
+        }
+    }
+
     void FixedUpdate()
     {
         Move();

@@ -12,6 +12,8 @@ public class Gun : MonoBehaviour
     public float RecoilStrengthVertical = 10;
     public float RecoilStrengthHorizontal = 10;
     public Transform BulletSpawn;
+    public Transform BulletSpawn2;
+    public Transform BulletSpawn3;
     public GameObject BulletPrefab;
     private Vector2 _rotationInput;
     private void OnRotate(InputValue value)
@@ -20,10 +22,27 @@ public class Gun : MonoBehaviour
     }
     private void OnShoot()
     {
-        GameObject bullet = Instantiate(BulletPrefab, BulletSpawn.transform.position, BulletSpawn.transform.rotation);
+        if (Player.GetComponent<Player>().Ammo > 0)
+        {
+            if (Player.GetComponent<Player>().IsShootingOne)
+            {
+                GameObject bullet = Instantiate(BulletPrefab, BulletSpawn.transform.position, BulletSpawn.transform.rotation);
 
-        Vector3 shootDir =  -transform.right;
-        Player.GetComponent<Rigidbody2D>().AddForce(new Vector2(shootDir.x * RecoilStrengthHorizontal, shootDir.y * RecoilStrengthVertical), ForceMode2D.Impulse);
+                Vector3 shootDir = -transform.right;
+                Player.GetComponent<Rigidbody2D>().AddForce(new Vector2(shootDir.x * RecoilStrengthHorizontal, shootDir.y * RecoilStrengthVertical), ForceMode2D.Impulse);
+                Player.GetComponent<Player>().Ammo--;
+            }
+            else
+            {
+                Instantiate(BulletPrefab, BulletSpawn.transform.position, BulletSpawn.transform.rotation);
+                Instantiate(BulletPrefab, BulletSpawn.transform.position, BulletSpawn2.transform.rotation);
+                Instantiate(BulletPrefab, BulletSpawn.transform.position, BulletSpawn3.transform.rotation);
+
+                Vector3 shootDir = -transform.right;
+                Player.GetComponent<Rigidbody2D>().AddForce(new Vector2(shootDir.x * RecoilStrengthHorizontal, shootDir.y * RecoilStrengthVertical), ForceMode2D.Impulse);
+                Player.GetComponent<Player>().Ammo -= 3;
+            }
+        }
     }
     void Start()
     {
