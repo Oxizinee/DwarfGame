@@ -20,6 +20,8 @@ public class Player : MonoBehaviour
     public GameObject AmmoUI;
     public bool IsShootingOne = true;
 
+    public GameObject OneBulletUI, ThreeBulletsUI;
+
     private Text AmmoText;
     private float _inputValue, _shootingValue, _ammoTimer;
     private Rigidbody2D _rb;
@@ -56,7 +58,23 @@ public class Player : MonoBehaviour
             _rb.gravityScale = 1;
         }
 
+
+        BulletUI();
       //  Reload();
+    }
+
+    private void BulletUI()
+    {
+        if(IsShootingOne) 
+        {
+            ThreeBulletsUI.SetActive(false);
+            OneBulletUI.SetActive(true);
+        }
+        else
+        {
+            ThreeBulletsUI.SetActive(true);
+            OneBulletUI.SetActive(false);
+        }
     }
 
     private void Reload()
